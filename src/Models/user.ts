@@ -1,5 +1,7 @@
 import client from "../database";
+
 import bcrypt from 'bcrypt';
+
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -7,6 +9,7 @@ dotenv.config();
 const {
     ROUNDS
 }=process.env
+
 
 
 
@@ -23,7 +26,7 @@ export class  user_model{
     async create(name:string,password:string){
         try{
             
-            const hash=bcrypt.hashSync(password,parseInt('10'));
+            const hash=bcrypt.hashSync(password,1);
             const conn=client.connect();
             const sql="INSERT INTO  users ($1,$2)";
             const result=  (await conn).query(sql,[name,password]);
