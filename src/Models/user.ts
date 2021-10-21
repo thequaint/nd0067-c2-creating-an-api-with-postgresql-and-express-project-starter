@@ -23,10 +23,11 @@ export type user={
 
 
 export class  user_model{
+    
     async create(name:string,password:string){
         try{
             
-            const hash=bcrypt.hashSync(password,1);
+            const hash=bcrypt.hashSync(password,"Hello");
             const conn=client.connect();
             const sql="INSERT INTO  users ($1,$2)";
             const result=  (await conn).query(sql,[name,password]);
